@@ -1,0 +1,23 @@
+
+git clone https://github.com/ibm-developer-skills-network/containers-project.git
+cd containers-project/
+export MY_NAMESPACE=sn-labs-$USERNAME 
+docker build . -t docker.io/ykv001/myapp:v1 
+docker push  docker.io/ykv001/myapp:v1 
+kubectl apply -f deployment.yml
+kubectl get pods
+kubectl port-forward deployment.apps/myapp 3000:3000 
+kubectl create configmap myapp-config --from-literal=env-var1=value1 --from-literal=env-var2=value2
+kubectl create configmap myapp-config --from-literal=server-url=http://example.com --from-literal=timeout=5000
+kubectl get configmap myapp-config
+kubectl get configmap myapp-config2
+kubectl get configmaps
+kubectl apply -f daemonset.yaml
+kubectl get daemonsets
+kubectl apply -f service.yaml
+kubectl get services
+kubectl create secret generic <secret-name> --from-literal=<key1>=<value1> --from-literal=<key2>=<value2> ...
+kubectl create secret generic myapp-secret --from-literal=username=myuser --from-literal=password=mysecretpassword
+kubectl get secret myapp-secret
+kubectl apply -f volume-and-pvc.yaml 
+kubectl get pvc
